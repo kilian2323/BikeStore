@@ -28,8 +28,6 @@ namespace BikeStore
         private bool exactMatch;
 
 
-        public ObservableCollection<string> Cmb_selected { get; set; } = new ObservableCollection<string> { "First name", "Last name", "E-mail" };
-
         public SqlQuery(string _schemaName, string _tableName, List<string> _columnNames, bool _filter, List<string> _searchFor, bool _combineAnd, bool _exactMatch)
         {
             try
