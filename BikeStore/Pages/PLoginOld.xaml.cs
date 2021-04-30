@@ -10,7 +10,7 @@ namespace BikeStore.Pages
     /// 
 
 
-    public partial class PLogin : Page
+    public partial class PLoginOld : Page
     {
         private StartWindow parent;
         
@@ -25,7 +25,7 @@ namespace BikeStore.Pages
         private string result_last_name = "";
         private string result_phone = "";
 
-        public PLogin(StartWindow _parent)
+        public PLoginOld(StartWindow _parent)
         {
             InitializeComponent();
             parent = _parent;

@@ -1,9 +1,12 @@
-﻿using Common.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Common.Classes
+namespace Core.Classes
 {
+    /*
+     * Describes a table in terms of its database location and its representations to frontend-levals
+     */
+
     public class Table
     {
         public string SchemaName { get; set; }
@@ -18,7 +21,7 @@ namespace Common.Classes
         {
             SchemaName = sName;
             TableName = tName;
-            ModelDataType = mdt;            
+            ModelDataType = mdt;
         }
 
         public void AddColumn(ColumnBase c)

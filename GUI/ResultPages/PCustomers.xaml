@@ -1,0 +1,14 @@
+﻿<Page x:Class="UI.ResultPages.PCustomers"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="260" d:DesignWidth="650"
+      Title="PCustomers">
+
+    <Grid Margin="0,0,0,0" Width="650" Height="260">
+        <DataGrid x:Name="dataGrid" Margin="0,0,0,0" Grid.ColumnSpan="1" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Grid.Row="1" VerticalAlignment="Stretch">
+        </DataGrid>
+    </Grid>
+</Page>

@@ -1,0 +1,45 @@
+﻿<Page x:Class="UI.Pages.PSearch"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" 
+      d:DesignHeight="90" d:DesignWidth="650"
+      Title="PSearch">
+
+    <Grid Margin="0,0,0,0" Width="650" Height="90">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="170"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="Tb_1" Grid.Column ="0" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="18"/>
+        <ComboBox x:Name="Cmb_1" Grid.Column ="0" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Width="150" DropDownClosed="Cmb_Closed">
+            <ComboBox.ItemsSource x:Uid="1">
+                <Binding Path="Cmb_1_searchable" BindsDirectlyToSource="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+            </ComboBox.ItemsSource>
+        </ComboBox>
+
+        <TextBox x:Name="Tb_2" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="18" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="Cmb_2" Grid.Column ="1" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Width="150" DropDownClosed="Cmb_Closed">
+            <ComboBox.ItemsSource x:Uid="2">
+                <Binding Path="Cmb_2_searchable" BindsDirectlyToSource="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+            </ComboBox.ItemsSource>
+        </ComboBox>
+
+        <TextBox x:Name="Tb_3" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Grid.ColumnSpan="1" Width="150"/>
+        <ComboBox x:Name="Cmb_3" Grid.Column ="2" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Width="150" DropDownClosed="Cmb_Closed">
+            <ComboBox.ItemsSource x:Uid="3">
+                <Binding Path="Cmb_3_searchable" BindsDirectlyToSource="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+            </ComboBox.ItemsSource>
+        </ComboBox>
+
+        <CheckBox x:Name="Cb_CombineAnd" Content="All criteria" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="10,3,0,0" Height="20"/>
+        <Button x:Name="Bt_Search" Content="Filter" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Top" Height="20" Width="50" Grid.Column="3" Click="Bt_Search_Click"/>
+        <TextBlock x:Name="Txt_ResultsHeadline" HorizontalAlignment="Left" Margin="6,0,0,20" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Width="314"/>
+        <Button x:Name="Bt_UnFilter" Content="Show all" HorizontalAlignment="Left" Margin="120,0,0,20" VerticalAlignment="Bottom" Height="20" Width="50" Grid.Column="3" Click="Bt_UnFilter_Click" Visibility="Hidden"/>
+        <CheckBox x:Name="Cb_ExactMatch" Content="Exact matches" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="10,23,0,0" Height="20"/>
+    </Grid>
+</Page>

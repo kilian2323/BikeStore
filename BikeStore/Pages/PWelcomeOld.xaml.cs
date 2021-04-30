@@ -18,11 +18,11 @@ namespace BikeStore.Pages
     /// </summary>
     /// 
     
-    public partial class PWelcome : Page
+    public partial class PWelcomeOld : Page
     {
         private StartWindow parent;
 
-        public PWelcome(StartWindow _parent)
+        public PWelcomeOld(StartWindow _parent)
         {
             InitializeComponent();
             parent = _parent;

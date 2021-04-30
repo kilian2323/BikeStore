@@ -10,7 +10,7 @@ namespace BikeStore
     /**
     * Methods required by the Search panel to interface the Result page.
     */
-    public interface IResultsRequiredBySearch
+    public interface IResultsRequiredBySearchOld
     {
 
 

@@ -12,7 +12,7 @@ namespace BikeStore.Pages
     /// <summary>
     /// Interaction logic for PResultDisplay.xaml
     /// </summary>
-    public partial class PResultDisplay : Page, IResultsRequiredBySearch, IResultsRequiredByMain
+    public partial class PResultDisplay : Page, IResultsRequiredBySearchOld, IResultsRequiredByMainOld
     {
         /**
          * Parameters to be changed by the programmer, to match with the tables and their columns.

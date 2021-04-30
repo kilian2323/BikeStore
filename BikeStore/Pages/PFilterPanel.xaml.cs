@@ -20,9 +20,9 @@ namespace BikeStore.Pages
     /// <summary>
     /// Interaction logic for PFilterPanel.xaml
     /// </summary>
-    public partial class PFilterPanel : Page, INotifyPropertyChanged, ISearchRequiredByMain
+    public partial class PFilterPanel : Page, INotifyPropertyChanged, ISearchRequiredByMainOld
     {
-        private IResultsRequiredBySearch page;                   // results page; will be set by StartWindow                              
+        private IResultsRequiredBySearchOld page;                   // results page; will be set by StartWindow                              
         private string schemaName;                               // will get it from StartWindow
         private string tableName;                                // will get it from StartWindow
         private ObservableCollection<string> columnNames;        // will get it from Result page
@@ -148,7 +148,7 @@ namespace BikeStore.Pages
         /**
          * Sets a new result page, clears the text fields and updates the combo boxes.
          */
-        public void SetResultsPage(IResultsRequiredBySearch _page, string _schemaName, string _tableName)
+        public void SetResultsPage(IResultsRequiredBySearchOld _page, string _schemaName, string _tableName)
         {
             page = _page;
             schemaName = _schemaName;

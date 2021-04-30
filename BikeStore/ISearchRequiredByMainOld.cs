@@ -7,9 +7,9 @@ namespace BikeStore
     /**
      * Methods required by Main to interface the Search panel.
      */
-    interface ISearchRequiredByMain
+    interface ISearchRequiredByMainOld
     {
-        public void SetResultsPage(IResultsRequiredBySearch _page, string schemaName, string tableName);
+        public void SetResultsPage(IResultsRequiredBySearchOld _page, string schemaName, string tableName);
         public void Clear();
     }
 }
