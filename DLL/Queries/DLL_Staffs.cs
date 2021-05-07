@@ -1,10 +1,9 @@
 ﻿using Core.Classes;
-using Core.Models;
+using Core.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Text;
 
 namespace DLL.Queries
 {

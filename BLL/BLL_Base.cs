@@ -1,29 +1,31 @@
 ﻿using Core.Classes;
-using Core.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace BLL
 {
     public class BLL_Base
     {
         /* To be called from GUI level */
-        public List<string> GetTableColumns(string tableAlias)
-        {
-            List<string> searchableColumns = new List<string>();
-            Table t = Core.Definitions.Tables.GetTableFromAlias(tableAlias);
-            List<ColumnBase> allColumns = t.columns;
-            Debug.WriteLine("Table has " + allColumns.Count + " columns");
-            foreach (ColumnBase b in allColumns)
+        public List<string> GetTableColumns(string tableAlias)        {
+
+            Type t = Core.Models.TableTypes.GetTypeFromAlias(tableAlias);
+            Debug.WriteLine("Type is " + t.ToString());
+            MemberInfo[] members = t.GetMembers();
+            List<string> attributeNames = new List<string>();
+            foreach (MemberInfo member in members)
             {                
-                if (b.IsRetrievable && b.IsVisible)
+                var memberAttributeName = member.GetCustomAttribute<ColumnViewNameAttribute>();
+                if (memberAttributeName != null)
                 {
-                    Debug.WriteLine("Adding displayable column "+ b.NameInViews);
-                    searchableColumns.Add(b.NameInViews);
-                }
+                    Debug.WriteLine("Member is " + member.ToString());
+                    Debug.WriteLine("Adding attribute " + memberAttributeName.Name);
+                    attributeNames.Add(memberAttributeName.Name);
+                }                
             }
-            return searchableColumns;
+            return attributeNames;
         }
     }
 }

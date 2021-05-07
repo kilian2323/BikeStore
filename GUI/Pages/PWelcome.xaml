@@ -22,7 +22,6 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="Bt_Edit" Content="Edit my profile" HorizontalAlignment="Right" VerticalAlignment="Top" Width ="100" Height="50" Margin="0,0,0,0" Grid.ColumnSpan="1" Grid.Row="2" Click="Bt_EditMyProfile_Click" Grid.Column="1"/>
-        <TextBlock x:Name="TextBlock" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Margin="0,0,0,0" FontWeight="Bold" FontSize="24"><Run Language="en-us" Text="Welcome to the BikeStore API"/></TextBlock>
         <TextBlock x:Name="TextBlock1" HorizontalAlignment="Left" Margin="54,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2"><Run Language="en-us" Text="Your profile"/></TextBlock>
         <TextBlock x:Name="Tbl_fullName" HorizontalAlignment="Left" Grid.Row="2" Text="FirstName LastName" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="394" Grid.Column="1"/>
         <TextBlock x:Name="TextBlock2_Copy" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="120" Margin="0,20,0,0" Text="E-mail (username):" Grid.Column="1"/>

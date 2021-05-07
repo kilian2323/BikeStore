@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace Core.Classes
 {
+    /* Contains all parameters required to perform a query */
     public class Search
     {
         public List<Tuple<string, string>> ColumnsAndSearchStrings = new List<Tuple<string, string>>();
@@ -25,8 +25,7 @@ namespace Core.Classes
             combineAnd = _combineAnd;
             exactMatch = _exactMatch;
             if (string.IsNullOrEmpty(search1) && string.IsNullOrEmpty(search2) && string.IsNullOrEmpty(search3))
-            {
-                
+            {                
                 filter = false;
             }
             else

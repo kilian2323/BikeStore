@@ -1,10 +1,10 @@
-﻿using Core.Models;
+﻿using Core.Models.Tables;
 
 namespace UI.Interfaces
 {
     public interface IMainRequiredByLogin
     {
-        public void Login(Staff e);
+        public void LoggedIn(Staff e);
         public void Logout();
     }
 }

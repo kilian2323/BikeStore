@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Core.Models
+namespace Core.Models.Tables
 {
     public class Staff
     {

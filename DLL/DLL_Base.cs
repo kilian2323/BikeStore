@@ -1,10 +1,10 @@
 ﻿using Core.Classes;
-using Core.Definitions;
+using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Text;
+using System.Reflection;
 
 namespace DLL
 {
@@ -19,17 +19,26 @@ namespace DLL
             bool exactMatch = search.exactMatch;
             List<string> searchStrings = new List<string>();
             List<string> searchColumns = new List<string>();
-            foreach(Tuple<string,string> t in search.ColumnsAndSearchStrings)
+            Type t = TableTypes.GetTypeFromAlias(search.tableAlias);
+            Debug.WriteLine("Type is " + t.ToString());
+            MemberInfo[] members = t.GetMembers();            
+            foreach (Tuple<string,string> tp in search.ColumnsAndSearchStrings)
             {
-                foreach (ColumnBase cb in Tables.GetTableFromAlias(search.tableAlias).columns)
+                foreach (MemberInfo member in members)
                 {
-                    if (t.Item1.Equals(cb.NameInViews))
+                    var memberAttributeDBName = member.GetCustomAttribute<ColumnDBNameAttribute>();
+                    var memberAttributeName = member.GetCustomAttribute<ColumnViewNameAttribute>();
+                    if (memberAttributeDBName != null && memberAttributeName != null)
                     {
-                        searchColumns.Add(cb.NameInTable);
-                        break;
+                        if (tp.Item1.Equals(memberAttributeName.Name))
+                        {
+                            Debug.WriteLine("Member is " + member.ToString());
+                            Debug.WriteLine("Adding attribute " + memberAttributeDBName.Name+ " as " + memberAttributeDBName.Name);
+                            searchColumns.Add(memberAttributeDBName.Name);
+                        }
                     }
                 }
-                searchStrings.Add(t.Item2);
+                searchStrings.Add(tp.Item2);                
             }
             if (searchColumns.Count < 3)
             {

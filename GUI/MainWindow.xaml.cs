@@ -1,12 +1,9 @@
-﻿using Core.Definitions;
-using Core.Models;
+﻿using Core.Models.Tables;
 using System.Diagnostics;
 using System.Windows;
 using UI.Interfaces;
 using UI.Pages;
 using UI.ResultPages;
-using System;
-using BLL.Tables;
 
 namespace UI
 {
@@ -18,47 +15,35 @@ namespace UI
         private PSearch searchPanel = null;
 
         private PLogin loginPage;
-        private BLL_Staffs bLLStaffs;
-        private BLL_Customers bllCustomers;
 
         public MainWindow()
         {
             InitializeComponent();
             Debug.WriteLine("MainWindow is constructed");
             loginPage = new PLogin();
-            bLLStaffs = new BLL_Staffs();
-            bllCustomers = new BLL_Customers();
-            PLogin.OnSuccessfullyLoggedIn -= Login;
-            PLogin.OnSuccessfullyLoggedIn += Login;
-            BLL_Staffs.OnBLLStaffViolation -= BLLStaffViolated;
-            BLL_Staffs.OnBLLStaffViolation += BLLStaffViolated;
-            Tables.GenerateTables();
-            ContentFrame.Content = loginPage;
-        }
-
-        
-
-        public void BLLStaffViolated(string error)
-        {
-            Debug.WriteLine("BLLStaffViolated invoked");
-            MessageBox.Show(error);
+            PLogin.OnSuccessfullyLoggedIn -= LoggedIn;
+            PLogin.OnSuccessfullyLoggedIn += LoggedIn;
+            //ContentFrame.Content = loginPage;
+            ContentFrame.Navigate(loginPage);
         }
 
         /* 
          * Makes controls visible
          * Required due to IMainRequiredByLogin
          */
-        public void Login(Staff staff)
+        public void LoggedIn(Staff staff)
         {
             Debug.WriteLine("OnSuccessfullyLoggedIn invoked");
             Headline.Text = "Logged in as " + staff.FirstName + " " + staff.LastName;
             Bt_Logout.Visibility = Visibility.Visible;
             Controls.Visibility = Visibility.Visible;
             ContentFrame.Content = new PWelcome(staff);
+            HeadFrame.Content = new PWelcomeHead();
+            HeadFrame.Visibility = Visibility.Visible;
         }
 
         /* 
-         * Hides controls
+         * Hides controls, resets content frame
          * Required due to IMainRequiredByLogin
          */
         public void Logout()
@@ -68,24 +53,24 @@ namespace UI
             Controls.Visibility = Visibility.Hidden;
             loginPage.Clear();
             ContentFrame.Content = loginPage;
-            SearchFrame.Visibility = Visibility.Hidden;
+            HeadFrame.Visibility = Visibility.Hidden;
         }
 
         private void UpdateSearchPanel(IResultsRequiredBySearch resultPage)
         {
             if (searchPanel == null)
             {
-                System.Diagnostics.Debug.WriteLine("Creating new Search panel");
+                Debug.WriteLine("Creating new Search panel");
                 searchPanel = new PSearch(resultPage);
-                SearchFrame.Content = searchPanel;
+                HeadFrame.Content = searchPanel;
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("Setting Search panel to new Result page");
+                Debug.WriteLine("Setting Search panel to new Result page");
                 searchPanel.Clear();
                 searchPanel.SetResultPage(resultPage);
             }
-            SearchFrame.Visibility = Visibility.Visible;
+            HeadFrame.Visibility = Visibility.Visible;
         }
 
         private void Bt_Customers_Click(object sender, RoutedEventArgs e)

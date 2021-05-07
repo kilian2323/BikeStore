@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿using Core.Models.Tables;
 using System.Windows;
 using System.Windows.Controls;
 

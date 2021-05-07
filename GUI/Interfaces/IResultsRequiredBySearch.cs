@@ -6,6 +6,6 @@ namespace UI.Interfaces
     {
         public string GetTableAlias();
 
-        public void DoSearch(Search search);
+        public int DoSearch(Search search);
     }
 }

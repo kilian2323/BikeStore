@@ -1,11 +1,7 @@
 ﻿using BLL.Tables;
-using Core.Classes;
-using Core.Models;
-using System;
-using System.Diagnostics;
+using Core.Models.Tables;
 using System.Windows;
 using System.Windows.Controls;
-using UI.Interfaces;
 
 namespace UI.Pages
 {
@@ -13,7 +9,7 @@ namespace UI.Pages
     /// Interaction logic for PLogin.xaml
     /// </summary>
 
-    public partial class PLogin : Page, IResultsRequiredBySearch
+    public partial class PLogin : Page
     {
         public delegate void SuccessfullyLoggedIn(Staff staff);
         public static event SuccessfullyLoggedIn OnSuccessfullyLoggedIn;
@@ -32,22 +28,24 @@ namespace UI.Pages
 
         private void Bt_Enter_Click(object sender, RoutedEventArgs e)
         {
-            BLL_Staffs bs = new BLL_Staffs();
+            var bs = new BLL_Staffs();
+            /* Check here only for null or empty, then pass the strings
+             * on to the DLL and assemble the query there
+             */
+            if (string.IsNullOrEmpty(Tb_userName.Text) || string.IsNullOrEmpty(Tb_password.Password))
+            {
+                MessageBox.Show("Username and password must not be empty!");
+                return;
+            }
             Staff loggedIn = bs.DoLogin(Tb_userName.Text, Tb_password.Password);
             if (loggedIn != null)
             {
-                OnSuccessfullyLoggedIn.Invoke(loggedIn);
-            }            
-        }
-
-        public string GetTableAlias()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void DoSearch(Search search)
-        {
-            throw new System.NotImplementedException();
-        }
+                OnSuccessfullyLoggedIn?.Invoke(loggedIn);
+            }
+            else
+            {
+                MessageBox.Show("Username / password wrong, user not found or insufficient privileges.");
+            }
+        }      
     }
 }

@@ -20,6 +20,12 @@
             <ComboBox.ItemsSource x:Uid="1">
                 <Binding Path="Cmb_1_searchable" BindsDirectlyToSource="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
             </ComboBox.ItemsSource>
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
         </ComboBox>
 
         <TextBox x:Name="Tb_2" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="18" Grid.ColumnSpan="2"/>
@@ -27,6 +33,12 @@
             <ComboBox.ItemsSource x:Uid="2">
                 <Binding Path="Cmb_2_searchable" BindsDirectlyToSource="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
             </ComboBox.ItemsSource>
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
         </ComboBox>
 
         <TextBox x:Name="Tb_3" Grid.Column="2" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Grid.ColumnSpan="1" Width="150"/>
@@ -34,6 +46,12 @@
             <ComboBox.ItemsSource x:Uid="3">
                 <Binding Path="Cmb_3_searchable" BindsDirectlyToSource="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
             </ComboBox.ItemsSource>
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
         </ComboBox>
 
         <CheckBox x:Name="Cb_CombineAnd" Content="All criteria" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="10,3,0,0" Height="20"/>

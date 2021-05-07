@@ -1,10 +1,7 @@
 ﻿using Core.Classes;
-using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Core.Models.Tables;
 using DLL.Queries;
-using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace BLL.Tables
 {

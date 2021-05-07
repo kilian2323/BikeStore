@@ -1,7 +1,8 @@
 ﻿using BLL.Tables;
 using Core.Classes;
-using Core.Models;
+using Core.Models.Tables;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Controls;
 using UI.Interfaces;
 
@@ -20,7 +21,10 @@ namespace UI.ResultPages
         {
             InitializeComponent();
             customerList = new ObservableCollection<Customer>();
+            dataGrid.AutoGeneratingColumn -= dgPrimaryGrid_AutoGeneratingColumn;
+            dataGrid.AutoGeneratingColumn += dgPrimaryGrid_AutoGeneratingColumn;
             dataGrid.ItemsSource = customerList; // create binding
+            
         }
 
         /*
@@ -36,10 +40,21 @@ namespace UI.ResultPages
          * Perform search and update StaffList
          * Required due to IResultsRequiredBySearch
          */
-        public void DoSearch(Search search)
+        public int DoSearch(Search search)
         {
             customerList.Clear();
             bLL_customers.GetRows(search).ForEach(customerList.Add);
+            return customerList.Count;
+        }
+
+        void dgPrimaryGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            var desc = e.PropertyDescriptor as PropertyDescriptor;
+            var att = desc.Attributes[typeof(ColumnViewNameAttribute)] as ColumnViewNameAttribute;
+            if (att != null)
+            {
+                e.Column.Header = att.Name;
+            }
         }
     }
 }

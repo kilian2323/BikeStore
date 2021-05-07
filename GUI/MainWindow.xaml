@@ -26,7 +26,7 @@
         </StackPanel>
         <Button Grid.Row ="2" x:Name="Bt_Logout" Content="Logout" Width="100" Height="30" Click="Bt_Logout_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden"/>
 
-        <Frame x:Name="SearchFrame" Grid.Row ="0" Grid.RowSpan="2" Grid.Column="1" Margin="10,0,0,0" NavigationUIVisibility="Hidden" HorizontalAlignment="Left" Width="650" Height="90" VerticalAlignment="Top"/>
+        <Frame x:Name="HeadFrame" Grid.Row ="0" Grid.RowSpan="2" Grid.Column="1" Margin="10,0,0,0" NavigationUIVisibility="Hidden" HorizontalAlignment="Left" Width="650" Height="90" VerticalAlignment="Top"/>
         <Frame x:Name="ContentFrame" Grid.Row ="1" Grid.Column="1" Margin="10,40,0,0" NavigationUIVisibility="Hidden" HorizontalAlignment="Left" Width="650" Grid.RowSpan="2" Height="260" VerticalAlignment="Top"/>
 
 

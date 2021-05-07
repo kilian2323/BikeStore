@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿using Core.Models.Tables;
 using System.Collections.Generic;
 
 namespace BLL.Tables

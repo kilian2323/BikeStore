@@ -1,14 +1,13 @@
 ﻿using BLL;
+using Core.Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using UI.Interfaces;
-using Core.Classes;
-using System.Diagnostics;
 
 namespace UI.Pages
 {
@@ -17,14 +16,13 @@ namespace UI.Pages
     /// </summary>
     public partial class PSearch : Page, INotifyPropertyChanged
     {
-        private List<string> colDisplayNames = new List<string>();
-        private List<string> colSelected = new List<string>(3);
+        private List<string> colDisplayNames = new List<string>(); // displayable names of all columns in this table
+        private List<string> colSelected = new List<string>(3);    // 
         private string tableAlias;
 
-        private int totalRecords = 0;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Search thisSearch;
+        private Search thisSearch;
         private IResultsRequiredBySearch resultPage;
 
         /* The following lists are used to ensure that the dropdown lists of the combo boxes contain only the values which are allowed,
@@ -78,6 +76,7 @@ namespace UI.Pages
             InitializeComponent();
             SetResultPage(_resultPage);
             InitializeColDisplayNames();
+            thisSearch = new Search(tableAlias, colSelected[0], colSelected[1], colSelected[2], Tb_1.Text, Tb_2.Text, Tb_3.Text, Cb_CombineAnd.IsChecked.Value, Cb_ExactMatch.IsChecked.Value);
             DoSearch(); // initial search with empty search strings (retrieves all results)
         }
 
@@ -86,7 +85,7 @@ namespace UI.Pages
          */
         public void Clear()
         {
-            System.Diagnostics.Debug.WriteLine("Clearing components");
+            Debug.WriteLine("Clearing search bar components");
             Tb_1.Text = "";
             Tb_2.Text = "";
             Tb_3.Text = "";
@@ -107,10 +106,19 @@ namespace UI.Pages
         }
 
 
-        public void DoSearch()
-        {
-            thisSearch = new Search(tableAlias, colSelected[0], colSelected[1], colSelected[2], Tb_1.Text, Tb_2.Text, Tb_3.Text, Cb_CombineAnd.IsChecked.Value, Cb_ExactMatch.IsChecked.Value);
-            resultPage.DoSearch(thisSearch);
+        public void DoSearch()        {
+            
+            int numEntries = resultPage.DoSearch(thisSearch);
+            if (string.IsNullOrEmpty(Tb_1.Text) && string.IsNullOrEmpty(Tb_2.Text) && string.IsNullOrEmpty(Tb_3.Text))
+            {
+                Txt_ResultsHeadline.Text = "All results: " + numEntries + " entries";
+                Bt_UnFilter.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                Txt_ResultsHeadline.Text = "Filtered results: " + numEntries + " entries";
+                Bt_UnFilter.Visibility = Visibility.Visible;
+            }
         }
 
         
@@ -165,11 +173,6 @@ namespace UI.Pages
             DataContext = this;
         }
 
-        private void DisplayResults(DataTable dt)
-        {
-
-        }
-
         /**
          * Event handler. Fires when one of the following lists changes:
          * - Cmb_1_searchable
@@ -189,8 +192,7 @@ namespace UI.Pages
          */
         private void Bt_UnFilter_Click(object sender, RoutedEventArgs e)
         {
-            ((Button)sender).Visibility = Visibility.Hidden;
-            colSelected.Clear();
+            thisSearch = new Search(tableAlias, colSelected[0], colSelected[1], colSelected[2], "", "", "", false, false);
             DoSearch();
         }
 
@@ -199,6 +201,7 @@ namespace UI.Pages
          */
         private void Bt_Search_Click(object sender, RoutedEventArgs e)
         {
+            thisSearch = new Search(tableAlias, colSelected[0], colSelected[1], colSelected[2], Tb_1.Text, Tb_2.Text, Tb_3.Text, Cb_CombineAnd.IsChecked.Value, Cb_ExactMatch.IsChecked.Value);
             DoSearch();
         }
 

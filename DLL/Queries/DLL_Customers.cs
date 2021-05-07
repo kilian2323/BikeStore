@@ -1,10 +1,9 @@
 ﻿using Core.Classes;
-using Core.Models;
+using Core.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Text;
 
 namespace DLL.Queries
 {
@@ -32,11 +31,11 @@ namespace DLL.Queries
             }
             Debug.WriteLine(commandString);
             cnn = new SqlConnection(connectionString);
-            List<Customer> customerList = new List<Customer>();
+            var customerList = new List<Customer>();
             using (cnn)
             {
                 cnn.Open();
-                SqlCommand command = new SqlCommand(commandString, cnn);
+                var command = new SqlCommand(commandString, cnn);
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
