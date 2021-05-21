@@ -33,7 +33,7 @@ namespace BikeStore.Pages
             System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Critical;
 #endif
             InitializeComponent();
-            ContentFrame.Content = new PLogin(this);            
+            ContentFrame.Content = new PLoginOld(this);            
         }
 
         public void LogIn(int _staff_id, string _first_name, string _last_name, string _phone)
@@ -44,7 +44,7 @@ namespace BikeStore.Pages
             Headline.Text = "Logged in as " + _first_name + " " + _last_name;
             Bt_Logout.Visibility = Visibility.Visible;
             Controls.Visibility = Visibility.Visible;
-            ContentFrame.Content = new PWelcome(this);
+            ContentFrame.Content = new PWelcomeOld(this);
         }
 
         public void LogOut()
@@ -54,7 +54,7 @@ namespace BikeStore.Pages
             Headline.Text = "Please log in to continue.";
             Bt_Logout.Visibility = Visibility.Hidden;
             Controls.Visibility = Visibility.Hidden;
-            ContentFrame.Content = new PLogin(this);
+            ContentFrame.Content = new PLoginOld(this);
             SearchFrame.Visibility = Visibility.Hidden;
         }
 
@@ -64,7 +64,7 @@ namespace BikeStore.Pages
         public string UserName { get => userName; set => userName = value; }
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
 
-        private void updateSearchPanel(IResultsRequiredBySearch page, string schemaName, string tableName)
+        private void updateSearchPanel(IResultsRequiredBySearchOld page, string schemaName, string tableName)
         {
             if (searchPanel == null)
             {

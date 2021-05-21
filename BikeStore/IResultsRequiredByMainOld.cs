@@ -7,7 +7,7 @@ namespace BikeStore
     /**
     * Methods required by Main to interface the Result page.
     */
-    interface IResultsRequiredByMain
+    interface IResultsRequiredByMainOld
     {
     }
 }

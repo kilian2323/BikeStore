@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace BikeStore
 {
@@ -26,9 +24,6 @@ namespace BikeStore
         private bool filter;
         private bool combineAnd;
         private bool exactMatch;
-
-
-        public ObservableCollection<string> Cmb_selected { get; set; } = new ObservableCollection<string> { "First name", "Last name", "E-mail" };
 
         public SqlQuery(string _schemaName, string _tableName, List<string> _columnNames, bool _filter, List<string> _searchFor, bool _combineAnd, bool _exactMatch)
         {
